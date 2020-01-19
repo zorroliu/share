@@ -1,0 +1,48 @@
+spring:
+  mvc:
+    static-path-pattern: /**
+    date-format: yyyy-MM-dd
+  resources:
+    static-locations: classpath:/static/
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    platform: mysql
+    username: root
+    password: 123456
+    url: jdbc:mysql:///share?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT1FROMDUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    filters: stat,wall,log4j
+    logSlowSql: true
+  servlet:
+    multipart:
+      max-file-size: 1000MB
+      max-request-size: 1000MB
+      file-size-threshold: 0
+      enabled: true
+  thymeleaf:
+    cache: false
+  http:
+    encoding:
+      charset: UTF-8
+  jackson:
+    date-format: yyyy-MM-dd
+    time-zone: GMT+8
+mybatis:
+  mapper-locations: "classpath:mapper/*Mapper.xml"
+  configuration:
+    mapUnderscoreToCamelCase: true
+  type-aliases-package: "com.ld.vue.pojo"
+server:
+  port: 8443
+  servlet:
+    context-path: /api
